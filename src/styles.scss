@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+  font-family: "Montserrat";
+  box-sizing: border-box;
+  margin: 0;
+};
+
+
+$theme-colors: (
+  "primary":    rgb(185, 7, 7),
+  "secondary":  rgb(49, 3, 3)
+);
+
+.fs-9{
+  font-size: 9pt !important;
+}
+
+.bg-header{
+  background: #2199e8 !important;
+}
+
+
+@import "../node_modules/bootstrap/scss/bootstrap";

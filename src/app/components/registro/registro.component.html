@@ -1,0 +1,49 @@
+<div class="container vh-100 d-flex align-items-center justify-content-center">
+    <div class="card w-50">
+      <article class="card-body pb-1">
+        <form [formGroup]="registroForm">
+
+          <div class="form-group mt-3">
+            <label class="ms-1">
+              <strong>Nombre</strong>
+            </label>
+            <input type="text" class="form-control" placeholder="Nombre" formControlName="name">
+          </div>
+
+          <div class="form-group mt-3">
+            <label class="ms-1">
+              <strong>Correo</strong>
+            </label>
+            <input type="email" class="form-control" placeholder="email" formControlName="email">
+          </div>
+
+          <div class="form-group mt-3">
+            <label class="ms-1">
+              <strong>Contraseña</strong>
+            </label>
+            <input type="password" class="form-control" placeholder="*********" formControlName="password">
+          </div>
+        
+          <div class="row form-group mt-3 text-center">
+            <div class="col-md">
+              <button type="submit" (click)="registro()" class="btn btn-primary btn-block w-100" >
+                <span >Registrarme</span>
+              </button>
+            </div>
+            <div class="col-md">
+              <button type="submit" routerLink="/login" class="btn btn-primary btn-block w-100" >
+                <span >Iniciar sesion</span>
+              </button>
+            </div>
+          </div>
+  
+          <div class="mt-2">
+            <p class="text-center text-muted fs-9 mb-0">
+              <span class="mx-1">ISP</span>
+            </p>
+          </div>
+        </form>
+      </article>
+    </div>
+  </div>
+  

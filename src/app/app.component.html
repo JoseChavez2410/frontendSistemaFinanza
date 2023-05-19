@@ -1,0 +1,9 @@
+<div class="container-fluid g-0" *ngIf="authService.isAuth()">
+  <app-header ></app-header>
+  
+  <div class="mainpanel">
+      <router-outlet ></router-outlet>
+  </div>
+</div>
+
+<router-outlet *ngIf="!authService.isAuth()"></router-outlet>

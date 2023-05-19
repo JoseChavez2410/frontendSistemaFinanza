@@ -1,0 +1,136 @@
+<div class="container">
+    <div class="row mt-4">
+      <div class="col">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="btn-group" role="group">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModalNewGasto">Añadir Gasto</button>
+            <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#formModalPresupuesto">Actualizar presupuesto</button>
+          </div>
+          <div class="groupLabel">
+            <label class="mr-2 fw-bold">Presupuesto mensual $ </label>
+            <label class="mr-2 fw-bold">{{presupuesto.monto}}</label>
+          </div>
+          <div class="groupLabel">
+            <label class="mr-2 fw-bold">Presupuesto restante $ </label>
+            <label class="mr-2 fw-bold">{{presupuestoRestante}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col">
+        <table class="table table-striped table-hover table-bordered mt-2">
+          <thead>
+            <tr  class="bg-header text-white">
+              <th>Categoria</th>
+              <th>Descripcion</th>
+              <th>Fecha</th>
+              <th>Valor</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of gastos;  let i = index">
+              <td class="align-middle">{{ item.categoria }}</td>
+              <td class="align-middle">{{ item.descripcion }}</td>
+              <td class="align-middle">{{ item.fecha | date: 'dd/MM/yyyy' }}</td>
+              <td class="align-middle">{{ item.monto }}</td>
+              <td class="align-middle">
+                <button class="btn btn-primary" (click)="EliminarGasto(item._id)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Modal ingreso gasto -->
+<div class="modal fade" id="formModalNewGasto" tabindex="-1" aria-labelledby="formModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formModalCenterTitle">Registar Gasto</h5>
+          <button #closeModalGasto type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="newGastoForm">
+
+            <div class="row mb-3">
+              <div class="col">
+                <label for="inputDescripcion" class="form-label">Descripcion</label>
+                <textarea class="form-control" id="inputDescripcion" rows="3" formControlName="descripcion"></textarea>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col">
+                <label for="inputCategoria" class="form-label">Categoria</label>
+                <select class="form-select" id="inputCategoria" formControlName="categoria">
+                  <option selected hidden>Selecciona una categoria</option>
+                  <option value="vivienda">Vivienda</option>
+                  <option value="transporte">Transporte</option>
+                  <option value="alimentacion">Alimentación</option>
+                  <option value="salud">Salud</option>
+                  <option value="educacion">Educación</option>
+                  <option value="entretenimiento">Entretenimiento</option>
+                  <option value="ropa">Ropa y Calzado</option>
+                  <option value="tecnologia">Tecnología</option>
+                  <option value="seguros">Seguros</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col">
+                <label for="inputMonto" class="form-label">Valor del gasto</label>
+                <input type="number" class="form-control" id="inputMonto" placeholder="" formControlName="monto" >
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label for="inputFecha" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="inputFecha" placeholder="" formControlName="fecha" >
+              </div>
+            </div>
+           
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button id="cerrarboton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary"  (click)="GuardarGasto()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal presupuesto -->
+<div class="modal fade" id="formModalPresupuesto" tabindex="-1" aria-labelledby="formModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formModalCenterTitle">Presupuesto</h5>
+          <button #closeModalPresupuesto type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="presupuestoForm">
+
+            <div class="row mb-3">
+                <div class="col">
+                  <label for="inputPresupuesto" class="form-label">Nuevo Presupuesto</label>
+                  <input type="number" class="form-control" id="inputPresupuesto" placeholder="" formControlName="monto" >
+                </div>
+            </div>
+  
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button id="cerrarboton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="GuardarPresupuesto()">Guardar</button>
+        </div>
+      </div>
+    </div>
+</div>
